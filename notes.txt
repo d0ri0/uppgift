@@ -1,0 +1,38 @@
+- använde bootstrap för att snabbt få ett schysst responsivt UI
+- input type "tel" för att få numerisk keyboard på mobil, även om det inte är schematiskt korrekt..
+
+todo:
+- stäng mobil meny på sidbytning
+- filter visa endast produkter som går att köpa
+- disablea lägg till om antal = 0
+- uppdatera amount på befintlig cart
+- ta bort cart
+- visa notify efter tillagd i varukorg
+- loading icon
+- base path http://apoteket-uppgift-fe.ginzburg.it/api/
+- css grid
+- filtrera bort product utan ID
+- cart ladda ej om om inget har ändrats
+- testa // Remove incomplete items
+
+
+Buyable: true
+Description: "Tablett 25 mg 10 styck Blister"
+Id: 1
+Name: "Postafen®"
+Pic: "https://www.apoteket.se/produktbilder/Validoo/165787s.jpg"
+Price: 63.2
+
+
+<Product>
+<Buyable>true</Buyable>
+<Description>Tuggtablett 100 styck Blister</Description>
+<Id>2</Id>
+<Name>Novalucol®</Name>
+<Pic>
+https://www.apoteket.se/produktbilder/Validoo/478248s.jpg
+</Pic>
+<Price>82</Price>
+</Product>
+
+

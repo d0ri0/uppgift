@@ -12,13 +12,18 @@ class Page extends Component {
     }
 
     componentDidMount() {
+        // this.props.getDummyPosts();
     }
 
     render() {
         return (
             <div>
-                <Example onClick={this.props.loadCartSummary}
-                      data={this.props.data} />
+                <Example 
+                    onClick={this.props.loadCartSummary}
+                    data={this.props.data} 
+                    // onClick2={this.props.getDummyPosts}
+                    data2={this.props.data2} 
+                />
                 <Link to="/page2">Page 2</Link>
             </div>
         )
@@ -26,9 +31,11 @@ class Page extends Component {
 }
 
 const mapStateToProps = state => ({
-    data: state.api.data
+    data: state.api.data,
+    data2: state.api.data2
 })
 
 export default connect(mapStateToProps, {
-    loadCartSummary
+    loadCartSummary,
+    // getDummyPosts
 })(Page)

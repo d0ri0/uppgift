@@ -5,6 +5,7 @@ import {compose, createStore, applyMiddleware} from 'redux'
 import {middlewares} from './middleware'
 import rootReducer from './reducers'
 import App from './App'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
