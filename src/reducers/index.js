@@ -12,3 +12,7 @@ export default combineReducers({
 export const getCartTotalPrice = state => {
 	return fromCart.getCartTotalPrice( state.cart );
 };
+
+export const getCartTotalItems = state => {
+	return fromCart.getCartTotalItems( state.cart );
+};

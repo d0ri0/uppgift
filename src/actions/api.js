@@ -5,6 +5,10 @@ export const GET_PRODUCTS_FAILURE = 'GET_PRODUCTS_FAILURE'
 export const loadProducts = () => ({
     types: [GET_PRODUCTS_REQUEST, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE],
     callAPI: () => fetch('http://apoteket-uppgift-fe.ginzburg.it/api/products'),
+    shouldCallAPI: state => {
+        // Only fetch data if we dont have any
+        return ! state.api.data.length;
+    }
 })
 
 export const loadCartSummary = () => ({
@@ -60,7 +64,7 @@ export function addToCart(data) {
             // console.log(response);
             // dispatch(getCart());
             if (response.type === POST_CART_SUCCESS) {
-                dispatch(getCart());
+                dispatch(getCart( true ));
             }
         })
         //   return fetchPost().then(
@@ -114,16 +118,20 @@ export const GET_CART_REQUEST = 'GET_CART_REQUEST'
 export const GET_CART_SUCCESS = 'GET_CART_SUCCESS'
 export const GET_CART_FAILURE = 'GET_CART_FAILURE'
 
-export const getCart = () => ({
+export const getCart = ( force = false  ) => ({
     types: [GET_CART_REQUEST, GET_CART_SUCCESS, GET_CART_FAILURE],
     callAPI: () => fetch('http://apoteket-uppgift-fe.ginzburg.it/api/cart', {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'X-Key': 'qwerty',
-            // 'Cookie': 'gpjldhbeuv0xtebx0nc0gvkm',
+            'X-Key': 'qwerty'
         }
     }),
+    shouldCallAPI: state => {
+        // Only fetch data on first load
+        // Or adding new items to cart
+        return ! state.cart.hasLoaded || force;
+    }
 })
 
 
@@ -143,3 +151,11 @@ export const deleteCart = () => ({
     }),
     parse: () => {}
 })
+
+// We often need both of these as Cart json data is dependent on Products data
+export const getProductsAndCart = () =>{
+    return dispatch => {
+        dispatch(loadProducts());
+        dispatch(getCart());
+    }
+}

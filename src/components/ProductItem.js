@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 
 import AddToCart from './ProductItem/AddToCart';
+import Price from './Price';
 
 class ProductItem extends Component {
 
@@ -37,7 +38,9 @@ class ProductItem extends Component {
                     <h3 className="card-title">{item.Name}</h3>
                     {item.Description && <CardText>{item.Description}</CardText>}
                     <div className="numdata">
-                        <h5 className="price">{ item.Price } kr</h5>
+                        {/* <h5 className="price">
+                            <Price value={ item.Price } />
+                        </h5> */}
                         {item.Buyable ? (
                             
                             <div>

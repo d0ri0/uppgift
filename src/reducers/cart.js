@@ -1,11 +1,13 @@
 import * as types from '../actions/api'
+// import { currencyFormat } from '../misc/utils';
 
 const initialState = {
     data: {
         Items: [],
         Total: 0
     },
-    itemsInChange: []
+    itemsInChange: [],
+    hasLoaded: false
 }
 
 const isObject = (a) => {
@@ -39,7 +41,8 @@ const cartItems = (state = initialState, action) => {
 
             return {
                 ...state,
-                data: cartResponse
+                data:       cartResponse,
+                hasLoaded:  true
             }
 
             // break;
@@ -50,35 +53,36 @@ const cartItems = (state = initialState, action) => {
                     ...state,
                     itemsInChange: [...state.itemsInChange, action.payload.product.Id]
                 }
-                case 'DELETE_CART_SUCCESS':
-                    return {
-                        ...state,
-                        data: initialState.data
-                    }
-                    case 'POST_CART_SUCCESS':
-                        // console.log(state);
-                        // console.log(action);
-                        //alert('Added to cart' + action.payload.product.Id);
-                        // console.log(types.getCart());
+            case 'DELETE_CART_SUCCESS':
+                return {
+                    ...state,
+                    data: initialState.data
+                }
+            case 'POST_CART_SUCCESS':
+                // console.log(state);
+                // console.log(action);
+                //alert('Added to cart' + action.payload.product.Id);
+                // console.log(types.getCart());
 
-                        return {
-                            ...state,
-                            itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
-                        }
-                        case 'POST_CART_FAILURE':
-                            //alert('Failed added to cart' + action.payload.product.Id);
-                            return {
-                                ...state,
-                                itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
-                            }
-                            default:
-                                return state
+                return {
+                    ...state,
+                    itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
+                }
+            case 'POST_CART_FAILURE':
+                //alert('Failed added to cart' + action.payload.product.Id);
+                return {
+                    ...state,
+                    itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
+                }
+                default:
+                    return state
     }
 }
 
-export const getCartTotalPrice = state => {
-    // console.log();
-    return state.data.Total;
-};
+export const getCartTotalPrice = state => state.data.Total;
+
+export const getCartTotalItems = state => state.data.Items.reduce((total, currentValue) => total + currentValue.Quantity, 0);
+
+// export const getCartTotalPriceFormatted = state => currencyFormat( getCartTotalPrice() );
 
 export default cartItems;
