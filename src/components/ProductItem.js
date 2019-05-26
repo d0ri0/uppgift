@@ -34,7 +34,7 @@ class ProductItem extends Component {
   };
 
   render() {
-    const { item } = this.props;
+    const { item, itemsInChange } = this.props;
 
     return (
       <article className="card">
@@ -54,6 +54,10 @@ class ProductItem extends Component {
                 product={item}
                 defaultQuantity={this.props.defaultQuantity}
                 addToCart={this.addToCart}
+                buttonActive={
+                  itemsInChange.length > 0 &&
+                  itemsInChange.filter(id => id == item.Id).length
+                }
               />
             ) : (
               <Alert color="light">Denna produkt kan ej köpas.</Alert>

@@ -13,7 +13,8 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
-  Input
+  Input,
+  Spinner
 } from 'reactstrap';
 
 import { addToCart } from '../../actions/api';
@@ -42,7 +43,6 @@ class AddToCart extends Component {
   };
 
   onAddToCart = () => {
-
     // console.log('onAddToCart');
 
     // console.log(store);
@@ -54,10 +54,10 @@ class AddToCart extends Component {
     // console.log(this.props.cart.Total);
 
     this.props.addToCart({
-        product: this.props.product,
-        amount: this.state.amount
-    })
-}
+      product: this.props.product,
+      amount: this.state.amount
+    });
+  };
 
   render() {
     return (
@@ -87,8 +87,13 @@ class AddToCart extends Component {
         <Button
           className="mt-4 add-to-cart btn-lg"
           block
-          onClick={ this.onAddToCart }
+          onClick={this.onAddToCart}
         >
+          {this.props.buttonActive ? (
+            <Spinner size="sm" type="grow" color="light" />
+          ) : (
+            ''
+          )}
           Lägg i varukorg
         </Button>
       </React.Fragment>
