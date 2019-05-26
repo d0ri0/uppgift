@@ -13,6 +13,8 @@ export default ({ dispatch, getState }) => (next) => (action) => {
 		return next(action)
 	}
 
+	// console.log(getState());
+
 	if (!shouldCallAPI(getState())) {
 		return Promise.resolve()
 	}

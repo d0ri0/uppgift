@@ -42,13 +42,15 @@ const cartItems = (state = initialState, action) => {
             
             // break;
         case 'DELETE_CART_SUCCESS':
-            // console.log(action.payload);
             return {
                 ...state,
                 data: initialState.data
             }
         case 'POST_CART_SUCCESS':
+                // console.log(state);
+                // console.log(action);
             alert('Added to cart');
+            // console.log(types.getCart());
             return state
         case 'POST_CART_FAILURE':
             alert('Failed added to cart');

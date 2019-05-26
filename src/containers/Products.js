@@ -50,6 +50,10 @@ class Page extends Component {
 
     }
 
+    addToCart = product => {
+        console.log(product);
+    }
+
     render() {
         // console.log(this.props.data);
         return (
@@ -61,7 +65,8 @@ class Page extends Component {
                 </Row>
                 <Row>
                     {/* {this.props.data2.map( item => productItem( item ) )} */}
-                    {this.props.data.map( item => <ProductItem key={item.Id} item={item} onAddToCart={ product => this.props.addToCart( product ) }/> )}
+                    {/* {this.props.data.map( item => <ProductItem key={item.Id} item={item} onAddToCart={ product => this.props.addToCart( product ) }/> )} */}
+                    {this.props.data.map( item => <ProductItem key={item.Id} item={item} onAddToCart={ product => this.addToCart( product ) }/> )}
                 </Row>
           </Container>
         )

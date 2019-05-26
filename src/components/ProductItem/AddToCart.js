@@ -36,6 +36,14 @@ class AddToCart extends Component {
 
     onAddToCart = () => {
 
+        // console.log('onAddToCart');
+
+        // console.log(store);
+
+        // store.dispatch(addToCart(42)).then(() =>
+        //     console.log('Fetched user and updated UI!')
+        // )
+
         // console.log(this.props.cart.Total);
 
         this.props.addToCart({

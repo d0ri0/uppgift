@@ -18,6 +18,11 @@ todo:
 - sätta proptypes
 - filter(logik) -> filterlink(presentation)
 - utils, noop
+- använd transform i middleware för cart [] & ta bort tomma items
+- cypress test: testa prisuträkning om man lägger till ngt som redan finns i varukorg
+
+mock data: https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html
+
 
 footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
 https://egghead.io/lessons/react-redux-extracting-container-components-filterlink
