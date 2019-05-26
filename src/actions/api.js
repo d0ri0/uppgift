@@ -34,6 +34,7 @@ export const addToCart = data => ({
         method: 'POST',
         credentials: 'include',
         headers: {
+            // 'Accept': 'application/json',
             'Content-Type': 'application/json',
             'X-Key' : 'qwerty'
         },
@@ -42,6 +43,9 @@ export const addToCart = data => ({
             "Quantity": data.amount
         })
     }),
+    // We dont get back any body data from this call
+    // So nothing to parse
+    parse: () => {}
 })
 
 
@@ -59,4 +63,22 @@ export const getCart = product => ({
             // 'Cookie': 'gpjldhbeuv0xtebx0nc0gvkm',
         }
     }),
+})
+
+
+export const DELETE_CART_REQUEST = 'DELETE_CART_REQUEST'
+export const DELETE_CART_SUCCESS = 'DELETE_CART_SUCCESS'
+export const DELETE_CART_FAILURE = 'DELETE_CART_FAILURE'
+
+export const deleteCart = () => ({
+    types: [ DELETE_CART_REQUEST, DELETE_CART_SUCCESS, DELETE_CART_FAILURE ],
+    callAPI: () => fetch('http://apoteket-uppgift-fe.ginzburg.it/api/cart', { 
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'X-Key' : 'qwerty',
+            // 'Cookie': 'gpjldhbeuv0xtebx0nc0gvkm',
+        }
+    }),
+    parse: () => {}
 })

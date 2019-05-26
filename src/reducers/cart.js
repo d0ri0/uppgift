@@ -19,7 +19,9 @@ const cartItems = (state = initialState, action) => {
         //         ...state,
         //         products: [action.payload, ...state.products]
         //     }
+
         case types.GET_CART_SUCCESS:
+            
             // console.log(action.response);
             // console.log(isObject(action.response));
 
@@ -30,13 +32,27 @@ const cartItems = (state = initialState, action) => {
             //     // ⇒ do not attempt to process array
             //   }
 
+            // TODO: check action.response.Items / . Total
             const cartResponse = ( isObject(action.response) ? action.response : initialState.data );
-
+            
             return {
                 ...state,
                 data: cartResponse
-            }    
+            }
+            
             // break;
+        case 'DELETE_CART_SUCCESS':
+            // console.log(action.payload);
+            return {
+                ...state,
+                data: initialState.data
+            }
+        case 'POST_CART_SUCCESS':
+            alert('Added to cart');
+            return state
+        case 'POST_CART_FAILURE':
+            alert('Failed added to cart');
+            return state
         default:
             return state
     }

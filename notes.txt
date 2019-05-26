@@ -14,6 +14,16 @@ todo:
 - filtrera bort product utan ID
 - cart ladda ej om om inget har ändrats
 - testa // Remove incomplete items
+- skapa CRUD för src/actions/api.js - Cart
+- fetch api timeout: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
+- post cart 200OK, ska vara 201 created?
+
+
+notes fel saker:
+produkt utan Name, Pic fält
+tom cart, är [], ifylld är {}
+POST_CART_FAILURE, skickar text ist för json ()
+ingen documentation om Buyable
 
 
 Buyable: true
