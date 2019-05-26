@@ -29,7 +29,7 @@ export const POST_CART_FAILURE = 'POST_CART_FAILURE'
 // };
 
 export const addToCart2 = data => {
-    console.log('abc', data);
+    // console.log('abc', data);
 
     return {
         types: [POST_CART_REQUEST, POST_CART_SUCCESS, POST_CART_FAILURE],

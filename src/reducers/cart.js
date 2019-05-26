@@ -63,13 +63,13 @@ const cartItems = (state = initialState, action) => {
 
                         return {
                             ...state,
-                            itemsInChange: state.itemsInChange.filter(id => id != action.payload.product.Id)
+                            itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
                         }
                         case 'POST_CART_FAILURE':
                             //alert('Failed added to cart' + action.payload.product.Id);
                             return {
                                 ...state,
-                                itemsInChange: state.itemsInChange.filter(id => id != action.payload.product.Id)
+                                itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
                             }
                             default:
                                 return state

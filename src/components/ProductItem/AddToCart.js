@@ -1,15 +1,7 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
   Button,
   InputGroup,
   InputGroupAddon,
@@ -19,16 +11,9 @@ import {
 
 import { addToCart } from '../../actions/api';
 import { getCartTotalPrice } from '../../reducers';
-// import Modal from '../../components/Modal';
 
-import { showModal, hideModal } from '../../actions/modal'
+import { showModal } from '../../actions/modal'
 
-
-// const Todo = ({
-//     onClick
-// }) => (
-//     <div></div>
-// );
 
 class AddToCart extends Component {
   state = {
@@ -48,17 +33,6 @@ class AddToCart extends Component {
   };
 
   onAddToCart = () => {
-    // console.log('onAddToCart');
-
-    // console.log(store);
-
-    // store.dispatch(addToCart(42)).then(() =>
-    //     console.log('Fetched user and updated UI!')
-    // )
-
-    // console.log(this.props.cart.Total);
-
-    // console.log();
 
     const maxTotalPrice = 5000;
 
@@ -74,61 +48,46 @@ class AddToCart extends Component {
         })
     }
 
-    // this.props.validateAndAddToCart({
-    //     product: this.props.product,
-    //     amount: this.state.amount
-    // })
-
-    // this.props.addToCart({
-    //     product: this.props.product,
-    //     amount: this.state.amount
-    // })
 }
 
   render() {
-
     const decrementButtonIsDisabled = this.state.amount <= 1;
 
     return (
-      <React.Fragment>
+        <React.Fragment>
 
-        {/* <Modal /> */}
-
-        <div className="cart-amount-wrapper">
-          <h6>Antal:</h6>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">
-              <Button
-                onClick={this.decrement}
-                disabled={decrementButtonIsDisabled}
-              >
-                -
-              </Button>
-            </InputGroupAddon>
-            <Input
-              readOnly
-              name="amount"
-              value={this.state.amount}
-              style={{ textAlign: 'center' }}
-            />
-            <InputGroupAddon addonType="append">
-              <Button onClick={this.increment}>+</Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </div>
-        <Button
-          className="mt-4 add-to-cart btn-lg"
-          block
-          onClick={this.onAddToCart}
-        >
-          {this.props.buttonActive ? (
-            <Spinner size="sm" type="grow" color="light" />
-          ) : (
-            ''
-          )}
-          Lägg i varukorg
-        </Button>
-      </React.Fragment>
+            <div className="cart-amount-wrapper">
+                <h6>Antal:</h6>
+                <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                    <Button
+                    onClick={this.decrement}
+                    disabled={decrementButtonIsDisabled}
+                    >
+                    -
+                    </Button>
+                </InputGroupAddon>
+                <Input
+                    readOnly
+                    name="amount"
+                    value={this.state.amount}
+                    style={{ textAlign: 'center' }}
+                />
+                <InputGroupAddon addonType="append">
+                    <Button onClick={this.increment}>+</Button>
+                </InputGroupAddon>
+                </InputGroup>
+            </div>
+            <Button
+                className="mt-4 add-to-cart btn-lg"
+                block
+                onClick={this.onAddToCart}
+            >
+                {this.props.buttonActive && <Spinner size="sm" type="grow" color="light" />}
+                Lägg i varukorg
+            </Button>
+            
+        </React.Fragment>
     );
   }
 }
@@ -136,16 +95,16 @@ class AddToCart extends Component {
 // export default AddToCart;
 
 const mapStateToProps = state => ({
-  cart: state.cart.data,
-  totalPrice : getCartTotalPrice( state )
+    cart: state.cart.data,
+    totalPrice : getCartTotalPrice( state )
 });
 
 export default connect(
-  mapStateToProps,
-  {
-    addToCart,
-    // validateAndAddToCart,
-    getCartTotalPrice,
-    showModal
-  }
+    mapStateToProps,
+    {
+        addToCart,
+        // validateAndAddToCart,
+        getCartTotalPrice,
+        showModal
+    }
 )(AddToCart);

@@ -1,7 +1,5 @@
 import * as types from '../actions/modal'
 
-
-
 const initialState = {
     modalProps: {
         isOpen: false
@@ -11,7 +9,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case 'POST_CART_SUCCESS':
-            // console.log(action);
             return {
                 modalProps: {
                     isOpen: true,
@@ -19,7 +16,6 @@ export default (state = initialState, action) => {
                 },
             }
         case 'POST_CART_FAILURE':
-            // console.log(action);
             return {
                 modalProps: {
                     isOpen: true,
