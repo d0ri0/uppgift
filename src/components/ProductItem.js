@@ -37,7 +37,11 @@ class ProductItem extends Component {
     const { item } = this.props;
 
     return (
-      <article className="card">
+        <article className={[
+            "card",
+            ! item.Buyable ? 'not-buyable' : ''
+        ].join(' ')}
+        >
         {item.Pic && (
           <div className="card-img-wrapper">
             <CardImg top src={item.Pic} alt={`Produktbild för ` + item.name} />
@@ -56,7 +60,7 @@ class ProductItem extends Component {
                 addToCart={this.addToCart}
               />
             ) : (
-              <Alert color="light" className="mb-0 text-center">Denna produkt kan ej köpas.</Alert>
+              <Alert color="light" fade={false} className="mb-0 text-center">Denna produkt kan ej köpas.</Alert>
             )}
           </div>
         </CardBody>

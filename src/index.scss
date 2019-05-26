@@ -61,12 +61,21 @@ body {
   width: 120px;
 }
 
-.card .numdata {
-  .price {
-    position: absolute;
-    right: 20px;
-    height: 40px;
-    line-height: 40px;
+.card {
+  .numdata {
+    .price {
+      position: absolute;
+      right: 20px;
+      height: 40px;
+      line-height: 40px;
+      text-align: right;
+    }
+  }
+
+  &.not-buyable {
+    .price {
+      position: static;
+    }
   }
 }
 
