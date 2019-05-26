@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Container,
   Row,
@@ -40,6 +41,24 @@ class AddToCart extends Component {
     }));
   };
 
+  onAddToCart = () => {
+
+    // console.log('onAddToCart');
+
+    // console.log(store);
+
+    // store.dispatch(addToCart(42)).then(() =>
+    //     console.log('Fetched user and updated UI!')
+    // )
+
+    // console.log(this.props.cart.Total);
+
+    this.props.addToCart({
+        product: this.props.product,
+        amount: this.state.amount
+    })
+}
+
   render() {
     return (
       <React.Fragment>
@@ -68,7 +87,7 @@ class AddToCart extends Component {
         <Button
           className="mt-4 add-to-cart btn-lg"
           block
-          onClick={() => this.props.addToCart(this.state.amount)}
+          onClick={ this.onAddToCart }
         >
           Lägg i varukorg
         </Button>
