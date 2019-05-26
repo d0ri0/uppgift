@@ -48,7 +48,7 @@ class ProductItem extends Component {
           <h3 className="card-title">{item.Name}</h3>
           {item.Description && <CardText>{item.Description}</CardText>}
           <div className="numdata">
-            <h5 className="price">{Math.ceil(item.Price)} kr</h5>
+            <h5 className="price">{ item.Price } kr</h5>
             {item.Buyable ? (
               <AddToCart
                 product={item}
@@ -56,7 +56,7 @@ class ProductItem extends Component {
                 addToCart={this.addToCart}
               />
             ) : (
-              <Alert color="light">Denna produkt kan ej köpas.</Alert>
+              <Alert color="light" className="mb-0 text-center">Denna produkt kan ej köpas.</Alert>
             )}
           </div>
         </CardBody>

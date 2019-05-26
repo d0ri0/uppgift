@@ -88,6 +88,11 @@ class Page extends Component {
             <Button onClick={this.props.deleteCart}>Töm varukorg</Button>
           </Col>
         </Row>
+        <Row className="mt-3">
+          <Col>
+            Totalpris: {this.props.cart.Total} kr
+          </Col>
+        </Row>
         <CardColumns>
           {this.props.cart.Items.map(item => {
             // console.log(item.Quantity);

@@ -49,8 +49,7 @@ export const addToCart2 = data => ({
     payload: data
 })
 
-// Here is another thunk action creator.
-// It works exactly the same way.
+
 export function addToCart(data) {
     return dispatch => {
         dispatch(addToCart2(data)).then( response => {
@@ -69,6 +68,23 @@ export function addToCart(data) {
     //   )
     }
   }
+
+// // Now we can combine them
+// export function getUserAndTheirFirstPost(userId) {
+//     // Again, Redux Thunk will inject dispatch here.
+//     // It also injects a second argument called getState() that lets us read the current state.
+//     return (dispatch, getState) => {
+//       // Remember I told you dispatch() can now handle thunks?
+//       return dispatch(getUser(userId)).then(() => {
+//         // Assuming this is where the fetched user got stored
+//         const fetchedUser = getState().usersById[userId]
+//         // Assuming it has a "postIDs" field:
+//         const firstPostID = fetchedUser.postIDs[0]
+//         // And we can dispatch() another thunk now!
+//         return dispatch(getPost(firstPostID))
+//       })
+//     }
+//   }
 
 
 export const GET_CART_REQUEST = 'GET_CART_REQUEST'
