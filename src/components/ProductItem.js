@@ -21,12 +21,12 @@ class ProductItem extends Component {
         console.log('onchange');
     }
 
-    addToCart = amount => {
-        this.props.onAddToCart({
-            product: this.props.item,
-            amount: amount
-        })
-    }
+    // addToCart = amount => {
+    //     this.props.onAddToCart({
+    //         product: this.props.item,
+    //         amount: amount
+    //     })
+    // }
 
     render(){
         const { item } = this.props;
@@ -62,7 +62,8 @@ class ProductItem extends Component {
                         {/* Kan köpas: { item.Buyable ? 'Ja' : 'Nej' }
                         <br /> */}
                         { item.Buyable ? <AddToCart
-                            addToCart={this.addToCart}
+                            product = { item }
+                            // addToCart={this.addToCart}
                         /> : 'Denna produkt kan ej köpas.' }
 
                     </CardBody>

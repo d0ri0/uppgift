@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import { Container, Row, Col, Card, CardImg, CardText, CardBody,
     CardTitle, Button,   InputGroup,
     InputGroupAddon, Input } from 'reactstrap';
+
+import {
+    addToCart 
+} from '../../actions/api'
 
 class AddToCart extends Component {
 
@@ -22,6 +27,18 @@ class AddToCart extends Component {
         }));
     }
 
+    onAddToCart = () => {
+
+        // console.log(this.props.product);
+
+        this.props.addToCart({
+            product: this.props.product,
+            amount: this.state.amount
+        })
+    }
+
+
+
     render(){
         return(
             <React.Fragment>
@@ -38,7 +55,7 @@ class AddToCart extends Component {
                 <Button
                     className="mt-2"
                     block 
-                    onClick={ () => this.props.addToCart( this.state.amount ) }
+                    onClick={ this.onAddToCart }
                 >
                     Lägg i varukorg
                 </Button>
@@ -48,4 +65,12 @@ class AddToCart extends Component {
 
 }
 
-export default AddToCart;
+// export default AddToCart;
+
+const mapStateToProps = state => ({
+    // data: state.api.data,
+})
+
+export default connect(mapStateToProps, {
+    addToCart
+})(AddToCart)
