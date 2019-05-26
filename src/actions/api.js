@@ -69,6 +69,25 @@ export function addToCart(data) {
     }
   }
 
+// export const validateAndAddToCart = () => {
+//     return (dispatch, getState) => {
+//         let formData = getState().formData
+
+//         if (isValid(formData)) {
+//             dispatch({type: "VALIDATION_PASSED"})
+//             dispatch({type: "SUBMISSION_STARTED"})
+
+//             submit(formData)
+//                 .then(() => dispatch({type: "SUBMITTED" /* additional data */}))
+//                 .catch((e) => dispatch({type: "SUBMISSION_FAILED", e}))
+//         }
+//         else {
+//             dispatch({type: "VALIDATION_FAILED" /* additional data */})
+//         }
+//     }
+// }
+
+
 // // Now we can combine them
 // export function getUserAndTheirFirstPost(userId) {
 //     // Again, Redux Thunk will inject dispatch here.

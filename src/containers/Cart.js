@@ -9,8 +9,12 @@ import {
   loadCartSummary,
   addToCart,
   getCart,
-  deleteCart
+  deleteCart,
+  // getCartTotalPrice
 } from '../actions/api';
+
+import { getCartTotalPrice } from '../reducers';
+
 import {
   Container,
   Row,
@@ -90,7 +94,7 @@ class Page extends Component {
         </Row>
         <Row className="mt-3">
           <Col>
-            Totalpris: {this.props.cart.Total} kr
+            Totalpris: {this.props.totalPrice} kr
           </Col>
         </Row>
         <CardColumns>
@@ -120,7 +124,8 @@ class Page extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart.data,
-  data: state.api.data
+  data: state.api.data,
+  totalPrice : getCartTotalPrice( state )
 });
 
 export default connect(

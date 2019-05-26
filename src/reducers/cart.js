@@ -61,4 +61,9 @@ const cartItems = (state = initialState, action) => {
     }
 }
 
-export default cartItems
+export const getCartTotalPrice = state => {
+    // console.log();
+    return state.data.Total;
+};
+
+export default cartItems;
