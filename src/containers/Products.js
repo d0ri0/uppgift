@@ -60,7 +60,6 @@ class Page extends Component {
   };
 
   render() {
-    // console.log(this.props.data);
     return (
       <Container>
         <Row>
@@ -74,6 +73,7 @@ class Page extends Component {
             <ProductItem
               key={item.Id}
               item={item}
+              itemsInChange={this.props.itemsInChange}
               onAddToCart={product => this.addToCart(product)}
             />
           ))}
@@ -84,7 +84,8 @@ class Page extends Component {
 }
 
 const mapStateToProps = state => ({
-  data: state.api.data
+  data: state.api.data,
+  itemsInChange: state.cart.itemsInChange
   // data2: state.api.data2
 });
 

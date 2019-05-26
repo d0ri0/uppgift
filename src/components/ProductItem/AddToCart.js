@@ -13,10 +13,11 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
-  Input
+  Input,
+  Spinner
 } from 'reactstrap';
 
-import { addToCart, validateAndAddToCart } from '../../actions/api';
+import { addToCart } from '../../actions/api';
 import { getCartTotalPrice } from '../../reducers';
 // import Modal from '../../components/Modal';
 
@@ -47,7 +48,6 @@ class AddToCart extends Component {
   };
 
   onAddToCart = () => {
-
     // console.log('onAddToCart');
 
     // console.log(store);
@@ -119,8 +119,13 @@ class AddToCart extends Component {
         <Button
           className="mt-4 add-to-cart btn-lg"
           block
-          onClick={ this.onAddToCart }
+          onClick={this.onAddToCart}
         >
+          {this.props.buttonActive ? (
+            <Spinner size="sm" type="grow" color="light" />
+          ) : (
+            ''
+          )}
           Lägg i varukorg
         </Button>
       </React.Fragment>
@@ -139,7 +144,7 @@ export default connect(
   mapStateToProps,
   {
     addToCart,
-    validateAndAddToCart,
+    // validateAndAddToCart,
     getCartTotalPrice,
     showModal
   }
