@@ -9,10 +9,17 @@ import {
     addToCart 
 } from '../../actions/api'
 
+
+// const Todo = ({
+//     onClick
+// }) => (
+//     <div></div>
+// );
+
 class AddToCart extends Component {
 
     state = {
-        amount: 1
+        amount: this.props.defaultQuantity || 1
     };
 
     increment = () => {
@@ -29,7 +36,7 @@ class AddToCart extends Component {
 
     onAddToCart = () => {
 
-        // console.log(this.props.product);
+        // console.log(this.props.cart.Total);
 
         this.props.addToCart({
             product: this.props.product,
@@ -40,6 +47,9 @@ class AddToCart extends Component {
 
 
     render(){
+        // console.log(this.props.cart);
+        // console.log(this.props.product);
+        // console.log(this.props.defaultQuantity);
         return(
             <React.Fragment>
                 <span>Antal:</span>
@@ -68,7 +78,7 @@ class AddToCart extends Component {
 // export default AddToCart;
 
 const mapStateToProps = state => ({
-    // data: state.api.data,
+    cart: state.cart.data,
 })
 
 export default connect(mapStateToProps, {

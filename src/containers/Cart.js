@@ -86,11 +86,18 @@ class Page extends Component {
                 <Row className="mt-3">
                     { this.props.cart.Items.map( item => {
 
+                        // console.log(item.Quantity);
+
                         const product = this.getProductById( item.Id );
                         
                         // Make sure that the product exists so we have its information
                         return product && (
-                            <ProductItem key={item.Id} item={ product } onAddToCart={ product => this.props.addToCart( product ) } />
+                            <ProductItem 
+                                key={item.Id} 
+                                item={ product }
+                                defaultQuantity={ item.Quantity }
+                                onAddToCart={ product => this.props.addToCart( product ) } 
+                            />
                         );
 
                     } ) }

@@ -17,9 +17,9 @@ class ProductItem extends Component {
 
 
 
-    onChange = () => {
-        console.log('onchange');
-    }
+    // onChange = () => {
+    //     console.log('onchange');
+    // }
 
     // addToCart = amount => {
     //     this.props.onAddToCart({
@@ -63,6 +63,7 @@ class ProductItem extends Component {
                         <br /> */}
                         { item.Buyable ? <AddToCart
                             product = { item }
+                            defaultQuantity={ this.props.defaultQuantity }
                             // addToCart={this.addToCart}
                         /> : 'Denna produkt kan ej köpas.' }
 
