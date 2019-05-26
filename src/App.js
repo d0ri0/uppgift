@@ -9,6 +9,7 @@ import Page from './containers/Page';
 import Page2 from './containers/Page2';
 import Products from './containers/Products';
 import Cart from './containers/Cart';
+import ModalRoot from './components/ModalRoot';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/page2" component={Page2} />
           <Route path="/products" component={Products} />
           <Route path="/cart" component={Cart} />
+          <ModalRoot />
         </div>
       </Router>
     );

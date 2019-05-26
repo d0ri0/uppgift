@@ -50,11 +50,11 @@ const cartItems = (state = initialState, action) => {
         case 'POST_CART_SUCCESS':
                 // console.log(state);
                 // console.log(action);
-            alert('Added to cart');
+            // alert('Added to cart');
             // console.log(types.getCart());
             return state
         case 'POST_CART_FAILURE':
-            alert('Failed added to cart');
+            // alert('Failed added to cart');
             return state
         default:
             return state

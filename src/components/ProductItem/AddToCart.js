@@ -16,7 +16,12 @@ import {
   Input
 } from 'reactstrap';
 
-import { addToCart } from '../../actions/api';
+import { addToCart, validateAndAddToCart } from '../../actions/api';
+import { getCartTotalPrice } from '../../reducers';
+// import Modal from '../../components/Modal';
+
+import { showModal, hideModal } from '../../actions/modal'
+
 
 // const Todo = ({
 //     onClick
@@ -53,22 +58,49 @@ class AddToCart extends Component {
 
     // console.log(this.props.cart.Total);
 
-    this.props.addToCart({
-        product: this.props.product,
-        amount: this.state.amount
-    })
+    // console.log();
+
+    const maxTotalPrice = 5000;
+
+    // Check that we are under the max price limit before adding to cart
+    if( this.props.totalPrice <= maxTotalPrice ) {
+        this.props.addToCart({
+            product: this.props.product,
+            amount: this.state.amount
+        });
+    } else {
+        this.props.showModal({
+            message: `Varukorgens värde överstiger ${maxTotalPrice}kr och du kan därför inte lägga till fler varor. Vänligen töm varukorgen och försök igen.`,
+        })
+    }
+
+    // this.props.validateAndAddToCart({
+    //     product: this.props.product,
+    //     amount: this.state.amount
+    // })
+
+    // this.props.addToCart({
+    //     product: this.props.product,
+    //     amount: this.state.amount
+    // })
 }
 
   render() {
+
+    const decrementButtonIsDisabled = this.state.amount <= 1;
+
     return (
       <React.Fragment>
+
+        {/* <Modal /> */}
+
         <div className="cart-amount-wrapper">
           <h6>Antal:</h6>
           <InputGroup>
             <InputGroupAddon addonType="prepend">
               <Button
                 onClick={this.decrement}
-                disabled={this.state.amount <= 1}
+                disabled={decrementButtonIsDisabled}
               >
                 -
               </Button>
@@ -99,12 +131,16 @@ class AddToCart extends Component {
 // export default AddToCart;
 
 const mapStateToProps = state => ({
-  cart: state.cart.data
+  cart: state.cart.data,
+  totalPrice : getCartTotalPrice( state )
 });
 
 export default connect(
   mapStateToProps,
   {
-    addToCart
+    addToCart,
+    validateAndAddToCart,
+    getCartTotalPrice,
+    showModal
   }
 )(AddToCart);
