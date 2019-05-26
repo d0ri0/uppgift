@@ -2,7 +2,7 @@ import * as types from '../actions/api'
 
 const initialState = {
     data: [],
-    // Loading will display a spinner
+    // loading will display a spinner
     loading: false
 }
 

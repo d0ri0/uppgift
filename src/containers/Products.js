@@ -14,6 +14,7 @@ import {
     CardColumns
 } from 'reactstrap';
 
+import PageLoader from '../components/PageLoader';
 
 class Page extends Component {
     static propTypes = {
@@ -25,31 +26,37 @@ class Page extends Component {
     }
 
     render() {
-        return (
-        <Container>
-            <Row>
-            <Col>
-                <h1 className="display-3 text-center">Alla våra produkter</h1>
-            </Col>
-            </Row>
 
-            <CardColumns>
-            {this.props.data.map(item => (
-                <ProductItem
-                key={item.Id}
-                item={item}
-                itemsInChange={this.props.itemsInChange}
-                canAddToCart={true}
-                />
-            ))}
-            </CardColumns>
-        </Container>
+        if( this.props.isLoading ){
+            return <PageLoader />;
+        }
+
+        return (
+            <Container>
+                <Row>
+                <Col>
+                    <h1 className="display-3 text-center">Alla våra produkter</h1>
+                </Col>
+                </Row>
+
+                <CardColumns>
+                {this.props.data.map(item => (
+                    <ProductItem
+                    key={item.Id}
+                    item={item}
+                    itemsInChange={this.props.itemsInChange}
+                    canAddToCart={true}
+                    />
+                ))}
+                </CardColumns>
+            </Container>
         );
     }
 }
 
 const mapStateToProps = state => ({
     data: state.api.data,
+    isLoading: state.api.loading,
     itemsInChange: state.cart.itemsInChange
 });
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
 import {
     getCart,
-    deleteCart,
+    clearCart,
     getProductsAndCart
 } from '../actions/api';
 
@@ -21,6 +21,8 @@ import {
     CardColumns,
     Button
 } from 'reactstrap';
+
+import PageLoader from '../components/PageLoader';
 
 const EmptyView = () => (
     <Container>
@@ -46,13 +48,17 @@ class Page extends Component {
     }
 
     getProductById = productId => {
-        return this.props.data.find(item => item.Id === productId);
+        return this.props.data.data.find(item => item.Id === productId);
     };
 
     render() {
 
-        if( ! this.props.cart.Items.length ){
-        return <EmptyView />;
+        if( this.props.cart.loading || this.props.data.loading ){
+            return <PageLoader />;
+        }
+
+        if( ! this.props.cart.data.Items.length ){
+            return <EmptyView />;
         }
 
         return (
@@ -64,40 +70,40 @@ class Page extends Component {
             </Row>
             <Row className="mt-3">
                 <Col>
-                    <Button onClick={this.props.deleteCart}>Töm varukorg</Button>
+                    {/* TODO: Alert type modal where the user can confirm deletion */}
+                    <Button onClick={this.props.clearCart}>Töm varukorg</Button>
                 </Col>
             </Row>
             <Row className="mt-3">
                 <Col>
-                    Totalpris: {this.props.totalPrice} kr
+                    <CardColumns>
+                        {this.props.cart.data.Items.map(item => {
+
+                            const product = this.getProductById(item.Id);
+
+                            // Make sure that the product exists so we have its information
+                            return (
+                                product && (
+                                    <ProductItem
+                                        key={item.Id}
+                                        item={product}
+                                        defaultQuantity={item.Quantity}
+                                        onAddToCart={product => this.props.addToCart(product)}
+                                    />
+                                )
+                            );
+                        })}
+                    </CardColumns>
                 </Col>
             </Row>
-            <CardColumns>
-                {this.props.cart.Items.map(item => {
-
-                    const product = this.getProductById(item.Id);
-
-                    // Make sure that the product exists so we have its information
-                    return (
-                        product && (
-                            <ProductItem
-                                key={item.Id}
-                                item={product}
-                                defaultQuantity={item.Quantity}
-                                onAddToCart={product => this.props.addToCart(product)}
-                            />
-                        )
-                    );
-                })}
-            </CardColumns>
         </Container>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    cart: state.cart.data,
-    data: state.api.data,
+    cart: state.cart,
+    data: state.api,
     totalPrice : getCartTotalPrice( state )
 });
 
@@ -105,7 +111,7 @@ export default connect(
     mapStateToProps,
     {
         getCart,
-        deleteCart,
+        clearCart,
         getProductsAndCart
     }
 )(Page);

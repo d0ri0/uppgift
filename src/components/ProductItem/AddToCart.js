@@ -36,7 +36,7 @@ class AddToCart extends Component {
 
     const maxTotalPrice = 5000;
 
-    // Check that we are under the max price limit before adding to cart
+    // Check that we arent over the max price limit before adding to cart
     if( this.props.totalPrice <= maxTotalPrice ) {
         this.props.addToCart({
             product: this.props.product,
@@ -44,8 +44,8 @@ class AddToCart extends Component {
         });
     } else {
         this.props.showModal({
-            message: `Varukorgens värde överstiger ${maxTotalPrice}kr och du kan därför inte lägga till fler varor. Vänligen töm varukorgen och försök igen.`,
-        })
+            message: `Varukorgens värde överstiger ${maxTotalPrice}kr och du kan därför inte lägga till fler varor. Vänligen töm varukorgen och försök igen.`
+        });
     }
 
 }

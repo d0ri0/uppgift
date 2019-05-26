@@ -139,7 +139,7 @@ export const DELETE_CART_REQUEST = 'DELETE_CART_REQUEST'
 export const DELETE_CART_SUCCESS = 'DELETE_CART_SUCCESS'
 export const DELETE_CART_FAILURE = 'DELETE_CART_FAILURE'
 
-export const deleteCart = () => ({
+export const clearCart = () => ({
     types: [DELETE_CART_REQUEST, DELETE_CART_SUCCESS, DELETE_CART_FAILURE],
     callAPI: () => fetch('http://apoteket-uppgift-fe.ginzburg.it/api/cart', {
         method: 'DELETE',
@@ -152,7 +152,7 @@ export const deleteCart = () => ({
     parse: () => {}
 })
 
-// We often need both of these as Cart json data is dependent on Products data
+// We often need both of these as Cart data is dependent on Products data
 export const getProductsAndCart = () =>{
     return dispatch => {
         dispatch(loadProducts());

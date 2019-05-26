@@ -7,7 +7,10 @@ const initialState = {
         Total: 0
     },
     itemsInChange: [],
-    hasLoaded: false
+    // hasLoaded works like a form of cache
+    hasLoaded: false,
+    // loading will display a spinner
+    loading: false
 }
 
 const isObject = (a) => {
@@ -24,6 +27,11 @@ const cartItems = (state = initialState, action) => {
         //         products: [action.payload, ...state.products]
         //     }
 
+        case types.GET_CART_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
         case types.GET_CART_SUCCESS:
 
             // console.log(action.response);
@@ -42,7 +50,8 @@ const cartItems = (state = initialState, action) => {
             return {
                 ...state,
                 data:       cartResponse,
-                hasLoaded:  true
+                hasLoaded:  true,
+                loading:    false
             }
 
             // break;
@@ -51,7 +60,7 @@ const cartItems = (state = initialState, action) => {
                 // console.log(action.payload);
                 return {
                     ...state,
-                    itemsInChange: [...state.itemsInChange, action.payload.product.Id]
+                    itemsInChange: [...state.itemsInChange, action.payload.product.Id],
                 }
             case 'DELETE_CART_SUCCESS':
                 return {
@@ -72,7 +81,8 @@ const cartItems = (state = initialState, action) => {
                 //alert('Failed added to cart' + action.payload.product.Id);
                 return {
                     ...state,
-                    itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
+                    itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id),
+                    loading:    false
                 }
                 default:
                     return state

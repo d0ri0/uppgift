@@ -4,29 +4,34 @@
 todo:
 - stäng mobil meny på sidbytning
 - filter visa endast produkter som går att köpa
-- uppdatera amount på befintlig cart
-- visa notify efter tillagd i varukorg
-- loading icon
-- base path http://apoteket-uppgift-fe.ginzburg.it/api/
-- cart ladda ej om om inget har ändrats
-- cypress.io test // Remove incomplete items
 - skapa CRUD för src/actions/api.js - Cart
 - fetch api timeout: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
 - post cart 200OK, ska vara 201 created?
-- pris / styck, pris / antal*styck
-- Pris: 119.2kr -> 119,20kr. Pris: 82kr -> 82kr
-- sätta proptypes
-- filter(logik) -> filterlink(presentation)
 - utils, noop
+
+
+ny todo:
+- base path http://apoteket-uppgift-fe.ginzburg.it/api/
+- sätta proptypes
 - använd transform i middleware för cart [] & ta bort tomma items
+- request headers
+
+- footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
+- https://egghead.io/lessons/react-redux-extracting-container-components-filterlink
+
+
+
+TESTS:
+- cypress.io test // Remove incomplete items
 - cypress test: testa prisuträkning om man lägger till ngt som redan finns i varukorg
 - cypress testa maxTotalPrice = 5000kr
+
+
 
 mock data: https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html
 
 
-footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
-https://egghead.io/lessons/react-redux-extracting-container-components-filterlink
+
 
 notes fel saker:
 produkt utan Name, Pic fält
