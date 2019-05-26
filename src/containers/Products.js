@@ -1,19 +1,26 @@
-import PropTypes from 'prop-types'
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import Example from '../components/Example'
-import ProductItem from '../components/ProductItem'
+import ProductItem from '../components/ProductItem';
 import {
-    loadCartSummary, 
-    loadProducts, 
-    // getDummyPosts, 
-    addToCart 
-} from '../actions/api'
-import { Container, Row, Col, Card, CardImg, CardText, CardBody,
-    CardTitle, Button } from 'reactstrap';
-
-
-
+  loadCartSummary,
+  loadProducts,
+  // getDummyPosts,
+  addToCart
+} from '../actions/api';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardColumns,
+  Button
+} from 'reactstrap';
 
 // const productItem = item => {
 //     return (
@@ -36,46 +43,53 @@ import { Container, Row, Col, Card, CardImg, CardText, CardBody,
 // }
 
 class Page extends Component {
-    static propTypes = {
-        loadCartSummary: PropTypes.func.isRequired,
-        // data: PropTypes.array.isRequired,
-    }
+  static propTypes = {
+    loadCartSummary: PropTypes.func.isRequired
+    // data: PropTypes.array.isRequired,
+  };
 
-    componentDidMount() {
-        // this.props.loadProducts();
+  componentDidMount() {
+    // this.props.loadProducts();
+    // this.props.addToCart({
+    //     productName : 'namn här'
+    // });
+  }
 
-        // this.props.addToCart({
-        //     productName : 'namn här' 
-        // });
+  render() {
+    // console.log(this.props.data);
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <h1 className="display-3 text-center">Alla våra produkter</h1>
+          </Col>
+        </Row>
 
-    }
-
-    render() {
-        // console.log(this.props.data);
-        return (
-            <Container>
-                <Row>
-                    <Col>
-                        <h1 className="display-3 text-center">Alla våra produkter</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    {/* {this.props.data2.map( item => productItem( item ) )} */}
-                    {this.props.data.map( item => <ProductItem key={item.Id} item={item} onAddToCart={ product => this.props.addToCart( product ) }/> )}
-                </Row>
-          </Container>
-        )
-    }
+        <CardColumns>
+          {this.props.data.map(item => (
+            <ProductItem
+              key={item.Id}
+              item={item}
+              onAddToCart={product => this.props.addToCart(product)}
+            />
+          ))}
+        </CardColumns>
+      </Container>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    data: state.api.data,
-    // data2: state.api.data2
-})
+  data: state.api.data
+  // data2: state.api.data2
+});
 
-export default connect(mapStateToProps, {
+export default connect(
+  mapStateToProps,
+  {
     loadCartSummary,
     loadProducts,
     // getDummyPosts,
     addToCart
-})(Page)
+  }
+)(Page);
