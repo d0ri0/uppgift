@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import ProductItem from '../components/ProductItem'
-import {loadCartSummary, addToCart, getCart } from '../actions/api'
+import {loadCartSummary, addToCart, getCart, deleteCart } from '../actions/api'
 import { Container, Row, Col, Card, CardImg, CardText, CardBody,
     CardTitle, Button } from 'reactstrap';
 
@@ -76,14 +76,28 @@ class Page extends Component {
                         </h1>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="mt-3">
+                    <Col>
+                        <Button onClick={ this.props.deleteCart }>
+                            Töm varukorg
+                        </Button>
+                    </Col>
+                </Row>
+                <Row className="mt-3">
                     { this.props.cart.Items.map( item => {
+
+                        // console.log(item.Quantity);
 
                         const product = this.getProductById( item.Id );
                         
                         // Make sure that the product exists so we have its information
                         return product && (
-                            <ProductItem key={item.Id} item={ product } onAddToCart={ product => this.props.addToCart( product ) } />
+                            <ProductItem 
+                                key={item.Id} 
+                                item={ product }
+                                defaultQuantity={ item.Quantity }
+                                onAddToCart={ product => this.props.addToCart( product ) } 
+                            />
                         );
 
                     } ) }
@@ -103,5 +117,6 @@ export default connect(mapStateToProps, {
     // loadCartSummary,
     // getDummyPosts,
     // addToCart,
-    getCart
+    getCart,
+    deleteCart
 })(Page)

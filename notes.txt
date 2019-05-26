@@ -4,16 +4,34 @@
 todo:
 - stäng mobil meny på sidbytning
 - filter visa endast produkter som går att köpa
-- disablea lägg till om antal = 0
 - uppdatera amount på befintlig cart
-- ta bort cart
 - visa notify efter tillagd i varukorg
 - loading icon
 - base path http://apoteket-uppgift-fe.ginzburg.it/api/
-- css grid
-- filtrera bort product utan ID
 - cart ladda ej om om inget har ändrats
-- testa // Remove incomplete items
+- cypress.io test // Remove incomplete items
+- skapa CRUD för src/actions/api.js - Cart
+- fetch api timeout: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
+- post cart 200OK, ska vara 201 created?
+- pris / styck, pris / antal*styck
+- Pris: 119.2kr -> 119,20kr. Pris: 82kr -> 82kr
+- sätta proptypes
+- filter(logik) -> filterlink(presentation)
+- utils, noop
+- använd transform i middleware för cart [] & ta bort tomma items
+- cypress test: testa prisuträkning om man lägger till ngt som redan finns i varukorg
+
+mock data: https://heygrady.github.io/fetch-actions/docs/api/handleResponderActions.html
+
+
+footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
+https://egghead.io/lessons/react-redux-extracting-container-components-filterlink
+
+notes fel saker:
+produkt utan Name, Pic fält
+tom cart, är [], ifylld är {}
+POST_CART_FAILURE, skickar text ist för json ()
+ingen documentation om Buyable
 
 
 Buyable: true

@@ -55,6 +55,10 @@ class Page extends Component {
     // });
   }
 
+  addToCart = product => {
+    console.log(product);
+  };
+
   render() {
     // console.log(this.props.data);
     return (
@@ -70,7 +74,7 @@ class Page extends Component {
             <ProductItem
               key={item.Id}
               item={item}
-              onAddToCart={product => this.props.addToCart(product)}
+              onAddToCart={product => this.addToCart(product)}
             />
           ))}
         </CardColumns>

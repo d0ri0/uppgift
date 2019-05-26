@@ -15,9 +15,17 @@ import {
   Input
 } from 'reactstrap';
 
+import { addToCart } from '../../actions/api';
+
+// const Todo = ({
+//     onClick
+// }) => (
+//     <div></div>
+// );
+
 class AddToCart extends Component {
   state = {
-    amount: 1
+    amount: this.props.defaultQuantity || 1
   };
 
   increment = () => {
@@ -69,4 +77,15 @@ class AddToCart extends Component {
   }
 }
 
-export default AddToCart;
+// export default AddToCart;
+
+const mapStateToProps = state => ({
+  cart: state.cart.data
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    addToCart
+  }
+)(AddToCart);

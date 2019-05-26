@@ -50,7 +50,11 @@ class ProductItem extends Component {
           <div className="numdata">
             <h5 className="price">{Math.ceil(item.Price)} kr</h5>
             {item.Buyable ? (
-              <AddToCart addToCart={this.addToCart} />
+              <AddToCart
+                product={item}
+                defaultQuantity={this.props.defaultQuantity}
+                addToCart={this.addToCart}
+              />
             ) : (
               <Alert color="light">Denna produkt kan ej köpas.</Alert>
             )}
