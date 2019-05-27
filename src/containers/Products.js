@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ProductItems from '../components/ProductItems';
 import {
     getProducts,
-    addToCartAndLoadCart    
+    addToCartAndLoadCart
 } from '../actions/api';
 import {
     Container,

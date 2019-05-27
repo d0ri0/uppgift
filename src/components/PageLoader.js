@@ -4,9 +4,7 @@ import {
     Spinner
 } from 'reactstrap';
 
-const PageLoader = (
-
-) => (
+const PageLoader = () => (
     <div className="pageLoader">
         <Spinner color="dark" />
     </div>

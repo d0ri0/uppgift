@@ -1,4 +1,5 @@
-import * as types from '../actions/modal'
+// import * as types from '../actions/modal'
+import * as types from '../actions/actionTypes'
 
 const initialState = {
     modalProps: {
@@ -8,7 +9,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'POST_CART_SUCCESS':
+        case types.POST_CART_SUCCESS:
             return {
                 ...state,
                 modalProps: {
@@ -16,7 +17,7 @@ export default (state = initialState, action) => {
                     message: `Du har nu lagt till ${action.payload.amount}st ${action.payload.product.Name} i varukorgen.`
                 },
             }
-        case 'POST_CART_FAILURE':
+        case types.POST_CART_FAILURE:
             return {
                 ...state,
                 modalProps: {

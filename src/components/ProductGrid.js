@@ -6,13 +6,10 @@ import {
 
 const ProductGrid = ({ 
 	children
-}) => {
-
-    return (
-        <CardColumns>
-            { children }
-        </CardColumns>
-    )
-}
+}) => (
+    <CardColumns>
+        { children }
+    </CardColumns>
+)
 
 export default ProductGrid;

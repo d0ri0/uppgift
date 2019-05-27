@@ -1,5 +1,5 @@
 import { callAPIWrapper, isObject } from '../misc/utils';
-import * as types from '../actions/actionTypes'
+import * as types from './actionTypes'
 import { initialState as cartInitialState } from '../reducers/cart'
 
 export const getProducts = () => ({

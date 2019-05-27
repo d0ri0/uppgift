@@ -6,34 +6,20 @@ import { hideModal } from '../actions/modal'
 
 import Modal from './Modal';
 
-
-class ModalContainer extends React.Component {
-
-  closeModal = () => {
-
-    this.props.hideModal();
-
-  }
-
-  render() {
-    // if (!this.props.modalType) {
-    //   return null
-    // }
-    return (
-        <Modal 
-            isOpen = { this.props.data.modalProps.isOpen }
-            title = 'Title här'
-            message = { this.props.data.modalProps.message }
-            closeModal = { this.closeModal }
-        />
-    )
-  }
-}
+const ModalContainer = ({
+    data,
+    hideModal
+}) => (
+    <Modal 
+        isOpen = { data.modalProps.isOpen }
+        message = { data.modalProps.message }
+        closeModal = { hideModal }
+    />
+);
 
 const mapStateToProps = state => ({
-    // ...state.modal
     data: state.modal
-  })
+})
 
 export default connect(mapStateToProps, {
     hideModal

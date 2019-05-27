@@ -12,7 +12,7 @@ export const callAPIWrapper = ({
 }) => {
     return fetch(process.env.REACT_APP_API_ENDPOINT + path, {
         method:      method,
-        // This is a session based api
+        // This is a session based api.
         // Send browser cookies
         credentials: 'include',
         headers: {

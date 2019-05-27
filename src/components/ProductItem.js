@@ -13,11 +13,7 @@ const ProductItem = ({
     product,
     showAddToCart
 }) => (
-    <article className={[
-        "card",
-        ! product.Buyable ? 'not-buyable' : ''
-    ].join(' ')}
-    >
+    <article className="card">
         {product.Pic && (
             <div className="card-img-wrapper">
                 <CardImg top src={product.Pic} alt={`Produktbild för ` + product.name} />
@@ -39,7 +35,6 @@ const ProductItem = ({
                     </div>
                 )
             }
-
         </CardBody>
     </article>
 )

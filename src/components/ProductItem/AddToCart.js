@@ -6,7 +6,7 @@ import { addToCartAndLoadCart } from '../../actions/api';
 import { getCartTotalPrice } from '../../reducers';
 
 import { showModal } from '../../actions/modal'
-import AddToCartPresentational from './addToCart/AddToCartPresentational';
+import AddToCartPresentational from './AddToCart/AddToCartPresentational';
 
 class AddToCart extends Component {
     state = {

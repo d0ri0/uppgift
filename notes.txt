@@ -12,6 +12,8 @@ todo:
 ny todo:
 - sätta proptypes
 
+
+done:
 - footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
 - https://egghead.io/lessons/react-redux-extracting-container-components-filterlink
 
