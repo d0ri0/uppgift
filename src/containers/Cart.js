@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import ProductItem from '../components/ProductItem';
+import ProductItems from '../components/ProductItems';
 import {
     getCart,
     clearCart,
@@ -18,7 +18,6 @@ import {
     Container,
     Row,
     Col,
-    CardColumns,
     Button
 } from 'reactstrap';
 
@@ -72,24 +71,9 @@ class Page extends Component {
             </Row>
             <Row className="mt-3">
                 <Col>
-                    <CardColumns>
-                        {this.props.cart.data.Items.map(item => {
-
-                            const product = this.props.getProductById(item.Id);
-
-                            // Make sure that the product exists so we have its information
-                            return (
-                                product && (
-                                    <ProductItem
-                                        key={item.Id}
-                                        item={product}
-                                        defaultQuantity={item.Quantity}
-                                        onAddToCart={product => this.props.addToCart(product)}
-                                    />
-                                )
-                            );
-                        })}
-                    </CardColumns>
+                    <ProductItems 
+                        showAddToCart={false}
+                    />
                 </Col>
             </Row>
         </Container>
