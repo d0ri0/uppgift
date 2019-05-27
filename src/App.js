@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux'
 import TopNavigation from './components/TopNavigation';
-// import {
-//     loadProducts, 
-// } from './actions/api'
-// import Page from './containers/Page';
 import Products from './containers/Products';
 import Cart from './containers/Cart';
 import ModalRoot from './components/ModalRoot';
@@ -13,7 +8,6 @@ import routes from './misc/routes.js'
 import './App.css';
 
 class App extends Component {
-
     render() {
         return (
             <Router>

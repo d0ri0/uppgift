@@ -53,6 +53,7 @@ const AddToCardPresentational = ({
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         <Button
+                            data-test="decrementProductAmount"
                             onClick={onDecrement}
                             disabled={decrementButtonIsDisabled}
                         >
@@ -60,13 +61,17 @@ const AddToCardPresentational = ({
                         </Button>
                     </InputGroupAddon>
                     <Input
+                        data-test="productAmount"
                         readOnly
                         name="amount"
                         value={amount}
                         style={{ textAlign: 'center' }}
                     />
                     <InputGroupAddon addonType="append">
-                        <Button onClick={onIncrement}>+</Button>
+                        <Button
+                            data-test="incrementProductAmount"
+                            onClick={onIncrement}
+                        >+</Button>
                     </InputGroupAddon>
                 </InputGroup>
                 <h5 className="price">

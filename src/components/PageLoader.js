@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 
 const PageLoader = () => (
-    <div className="pageLoader">
+    <div className="page-loader">
         <Spinner color="dark" />
     </div>
 )

@@ -69,7 +69,12 @@ class Page extends Component {
                 <Row className="mt-3">
                     <Col>
                         {/* TODO: Alert type modal where the user can confirm deletion */}
-                        <Button onClick={this.props.clearCart}>Töm varukorg</Button>
+                        <Button
+                            data-test="clearCartButton"
+                            onClick={this.props.clearCart}
+                        >
+                            Töm varukorg
+                        </Button>
                     </Col>
                 </Row>
                 <Row className="mt-3">
