@@ -44,7 +44,7 @@ class Page extends Component {
                         <ProductItem
                         key={item.Id}
                         item={item}
-                        itemsInChange={this.props.itemsInChange}
+                        productsAddingToCart={this.props.productsAddingToCart}
                         canAddToCart={true}
                         />
                     ))}
@@ -57,7 +57,7 @@ class Page extends Component {
 const mapStateToProps = state => ({
     product: state.product.data,
     isLoading: state.product.loading,
-    itemsInChange: state.cart.itemsInChange
+    productsAddingToCart: state.cart.productsAddingToCart
 });
 
 export default connect(

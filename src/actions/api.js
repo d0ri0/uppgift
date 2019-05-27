@@ -16,7 +16,7 @@ export const getProducts = () => ({
 export const getCart = ( force = false ) => ({
     types: [types.GET_CART_REQUEST, types.GET_CART_SUCCESS, types.GET_CART_FAILURE],
     callAPI: () => callAPIWrapper({
-        path: 'cart',
+        path: 'cart'
     }),
     shouldCallAPI: state => {
         // Fetch data on first load
@@ -24,13 +24,10 @@ export const getCart = ( force = false ) => ({
         return ! state.cart.hasLoaded || force;
     },
     transform: response => {
-
         // Empty cart is an empty array []
         // Filled cart is an object {}
         // Normalize it
-        const cartResponse = isObject(response) ? response : cartInitialState.data;
-
-        return cartResponse;
+        return isObject(response) ? response : cartInitialState.data;
     }
 })
 
@@ -55,7 +52,7 @@ export const addToCart = data => {
         payload: data
     }
 }
-
+// After adding item to Cart we normally want to request a updated cart with total items & price
 export function addToCartAndLoadCart(data) {
     return dispatch => {
         return dispatch(addToCart(data)).then(response => {
@@ -65,7 +62,6 @@ export function addToCartAndLoadCart(data) {
         })
     }
 }
-
 
 export const clearCart = () => ({
     types: [types.DELETE_CART_REQUEST, types.DELETE_CART_SUCCESS, types.DELETE_CART_FAILURE],

@@ -19,7 +19,8 @@ class ProductItem extends Component {
     };
 
     render() {
-        const { item, itemsInChange } = this.props;
+        const { item, productsAddingToCart } = this.props;
+        const addToCardButtonIsLoading = productsAddingToCart.findIndex( productId => productId === item.Id ) !== -1;
 
         return (
             <article className={[
@@ -36,7 +37,7 @@ class ProductItem extends Component {
                 <CardBody>
                     <h3 className="card-title">{item.Name}</h3>
                     {item.Description && <CardText>{item.Description}</CardText>}
-                    <div className="numdata">
+                    <div className="num-data">
                         {item.Buyable ? (
                             
                             <div>
@@ -44,10 +45,7 @@ class ProductItem extends Component {
                                     product={item}
                                     defaultQuantity={this.props.defaultQuantity}
                                     addToCart={this.addToCart}
-                                    buttonActive={
-                                        itemsInChange.length > 0 &&
-                                        itemsInChange.filter(id => id === item.Id).length
-                                    }
+                                    isLoading={ addToCardButtonIsLoading }
                                 /> }
 
                             </div>

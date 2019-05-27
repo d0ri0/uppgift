@@ -79,7 +79,7 @@ class AddToCart extends Component {
     return (
         <React.Fragment>
             <div className="cart-amount-wrapper">
-                <h6>Antal:</h6>
+                <h6 className="totalItems">Antal:</h6>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         <Button
@@ -103,7 +103,7 @@ class AddToCart extends Component {
                     <Price value={ this.props.product.Price } />
                 </h5>
             </div>
-            { this.props.buttonActive ? loadingButton : normalButton }
+            { this.props.isLoading ? loadingButton : normalButton }
         </React.Fragment>
     );
   }

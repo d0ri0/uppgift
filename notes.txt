@@ -10,11 +10,8 @@ todo:
 
 
 ny todo:
-- skapa CRUD för src/actions/api.js - Cart
 - sätta proptypes
-- använd transform i middleware för cart []
 - .scss imports
-- itemsInChange
 
 - footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
 - https://egghead.io/lessons/react-redux-extracting-container-components-filterlink

@@ -6,7 +6,8 @@ export const initialState = {
         Items: [],
         Total: 0
     },
-    itemsInChange: [],
+    // When sending a request to add product to Cart we will show a loader on its button
+    productsAddingToCart: [],
     // hasLoaded works like a form of cache
     hasLoaded: false,
     // loading will display a spinner
@@ -30,17 +31,17 @@ export default (state = initialState, action) => {
         case types.POST_CART_REQUEST:
             return {
                 ...state,
-                itemsInChange: [...state.itemsInChange, action.payload.product.Id],
+                productsAddingToCart: [...state.productsAddingToCart, action.payload.product.Id],
             }
         case types.POST_CART_SUCCESS:
             return {
                 ...state,
-                itemsInChange: state.itemsInChange.filter(id => id !== action.payload.product.Id)
+                productsAddingToCart: state.productsAddingToCart.filter(id => id !== action.payload.product.Id)
             }
         case types.POST_CART_FAILURE:
             return {
                 ...state,
-                itemsInChange:  state.itemsInChange.filter(id => id !== action.payload.product.Id),
+                productsAddingToCart:  state.productsAddingToCart.filter(id => id !== action.payload.product.Id),
                 loading:        false
             }
         case types.DELETE_CART_SUCCESS:
