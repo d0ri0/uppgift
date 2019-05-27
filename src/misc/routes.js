@@ -1,5 +1,5 @@
 export default {
-    cart:       "/cart",
-    home:       "/",
-    products:   "/products"
+    cart:       '/cart',
+    home:       '/',
+    products:   '/products',
 }

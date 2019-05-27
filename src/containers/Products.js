@@ -1,22 +1,26 @@
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ProductItems from '../components/ProductItems';
+import PropTypes            from 'prop-types';
+import { connect }          from 'react-redux';
+
 import {
-    getProducts,
-    addToCartAndLoadCart
-} from '../actions/api';
-import {
+    Col,
     Container,
     Row,
-    Col
 } from 'reactstrap';
 
-import PageLoader from '../components/PageLoader';
+import {
+    addToCartAndLoadCart,
+    getProducts,
+} from '../actions/api';
 
-class Page extends Component {
+import { 
+    PageLoader, 
+    ProductItems,
+} from '../components';
+
+class Products extends Component {
     static propTypes = {
-        // loadCartSummary: PropTypes.func.isRequired
+        isLoading: PropTypes.bool.isRequired,
     };
 
     render() {
@@ -54,4 +58,4 @@ export default connect(
         getProducts,
         addToCartAndLoadCart,
     }
-)(Page);
+)(Products);

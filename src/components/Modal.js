@@ -1,13 +1,19 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-import { Button, Modal as ModalFromUpstream, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React     from 'react';
+import PropTypes from 'prop-types';
+import { 
+    Button, 
+    Modal as ModalFromUpstream, 
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+} from 'reactstrap';
 
 const Modal = ({ 
-    closeModal, 
-    message, 
-    isOpen 
+    closeModal,
+    isOpen,
+    message,
 }) => (
-    <ModalFromUpstream isOpen={isOpen}>
+    <ModalFromUpstream isOpen={ isOpen }>
         <ModalHeader>
             Information
         </ModalHeader>
@@ -15,9 +21,16 @@ const Modal = ({
             {message}
         </ModalBody>
         <ModalFooter>
-            <Button color="primary" onClick={closeModal}>Stäng</Button>
+            <Button color="primary" onClick={ closeModal }>Stäng</Button>
         </ModalFooter>
     </ModalFromUpstream>
 );
+
+
+Modal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    isOpen:     PropTypes.bool.isRequired,
+    message:    PropTypes.string,
+}
 
 export default Modal;

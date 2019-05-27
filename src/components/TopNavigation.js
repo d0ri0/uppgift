@@ -1,7 +1,14 @@
-import React from 'react';
+import React       from 'react';
+import PropTypes   from 'prop-types'
 import { connect } from 'react-redux';
-import { getCartTotalPrice, getCartTotalItems } from '../reducers';
-import { NavLink as RRNavLink, withRouter } from 'react-router-dom';
+import { 
+    getCartTotalPrice, 
+    getCartTotalItems 
+} from '../reducers';
+import { 
+    NavLink as RRNavLink, 
+    withRouter 
+} from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -11,19 +18,23 @@ import {
     NavItem,
     NavLink 
 } from 'reactstrap';
-
 import routes from '../misc/routes';
-import Price from './Price';
+import Price  from './Price';
 
 class TopNavigation extends React.Component {
 
+    static propTypes = {
+        totalItems: PropTypes.number.isRequired,
+        totalPrice: PropTypes.number.isRequired,
+    };
+
     state = {
-        isOpen: false
+        isOpen: false,
     }
 
     toggle = () => {
         this.setState( state => ({
-            isOpen: !state.isOpen
+            isOpen: ! state.isOpen,
         }));
     }
 
@@ -31,20 +42,20 @@ class TopNavigation extends React.Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href={routes.home}>
+                    <NavbarBrand href={ routes.home} >
                         Arbetsprov
                         <span className='d-none d-sm-inline'>
                             { ' ' } - Produktlistning samt varukorg
                         </span>
                     </NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
+                    <NavbarToggler onClick={ this.toggle } />
+                    <Collapse isOpen={ this.state.isOpen } navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink
                                     // Pass in custom element to use
-                                    tag={RRNavLink} 
-                                    to={routes.products}
+                                    tag = { RRNavLink } 
+                                    to  = { routes.products }
                                 >
                                     Produkter
                                 </NavLink>
@@ -52,10 +63,10 @@ class TopNavigation extends React.Component {
                             <NavItem>
                                 <NavLink
                                     // Pass in custom element to use
-                                    tag={RRNavLink} 
-                                    to={routes.cart}
+                                    tag = { RRNavLink } 
+                                    to  = { routes.cart }
                                 >
-                                    Varukorg ({this.props.totalItems}) <Price value={ this.props.totalPrice } />
+                                    Varukorg ({ this.props.totalItems }) <Price value={ this.props.totalPrice } />
                                 </NavLink>
                             </NavItem>
                         </Nav>
@@ -67,8 +78,8 @@ class TopNavigation extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    totalItems: getCartTotalItems( state ),
     totalPrice: getCartTotalPrice( state ),
-    totalItems: getCartTotalItems( state )
 });
 
 // withRouter is needed to correctly highlight the active link
@@ -77,6 +88,6 @@ export default withRouter(connect(
     mapStateToProps,
     {
         getCartTotalPrice,
-        getCartTotalItems
+        getCartTotalItems,
     }
 )(TopNavigation));

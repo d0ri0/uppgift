@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PropTypes            from 'prop-types';
+import { connect }          from 'react-redux';
+import { Link }             from 'react-router-dom';
 
-import ProductGrid from '../components/ProductGrid';
-import ProductItem from '../components/ProductItem';
-
+import { 
+    ProductGrid, 
+    ProductItem,
+} from '../components';
 
 import {
     getCart,
@@ -42,7 +43,13 @@ const EmptyView = () => (
 );
 
 class Page extends Component {
+    
     static propTypes = {
+        clearCart:          PropTypes.func.isRequired,
+        getProductById:     PropTypes.func.isRequired,
+        getProductsAndCart: PropTypes.func.isRequired,
+        cart:               PropTypes.object.isRequired,
+        product:            PropTypes.object.isRequired,
     };
 
     componentDidMount() {

@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
+import { combineReducers }       from 'redux'
 import product, * as fromProduct from './product'
-import cart, * as fromCart from './cart'
-import modal from './modal'
+import cart, * as fromCart       from './cart'
+import modal                     from './modal'
 
 export default combineReducers({
     product,
     cart,
-    modal
+    modal,
 })
 
 export const getProductById = ( state, productId ) => {

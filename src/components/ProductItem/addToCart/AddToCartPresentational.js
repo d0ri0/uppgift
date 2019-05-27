@@ -1,5 +1,5 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React     from 'react';
+import PropTypes from 'prop-types';
 import {
     Button,
     InputGroup,
@@ -10,12 +10,11 @@ import {
 
 import Price from '../../Price';
 
-
 const LoadingButton = () => (
     <Button
-        className="mt-4 add-to-cart btn-lg"
+        className = "mt-4 add-to-cart btn-lg"
+        disabled  = { true }
         block
-        disabled={true}
     >
         <Spinner color="light" size="sm" />
         Lägger till...
@@ -26,9 +25,9 @@ const NormalButton = ({
     onClick,
 }) => (
     <Button
-        className="mt-4 add-to-cart btn-lg"
+        className = "mt-4 add-to-cart btn-lg"
+        onClick   = { onClick }
         block
-        onClick={onClick}
     >
         Lägg i varukorg
     </Button>
@@ -40,7 +39,7 @@ const AddToCardPresentational = ({
     onIncrement,
     onDecrement,
     isLoading,
-    onAddToCart
+    onAddToCart,
 }) => {
 
     // Dont allow user to add 0 or negative amount of items
@@ -49,28 +48,28 @@ const AddToCardPresentational = ({
     return (
         <React.Fragment>
             <div className="cart-amount-wrapper">
-                <h6 className="totalItems">Antal:</h6>
+                <h6 className="total-items">Antal:</h6>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         <Button
-                            data-test="decrementProductAmount"
-                            onClick={onDecrement}
-                            disabled={decrementButtonIsDisabled}
+                            data-test = "decrementProductAmount"
+                            onClick   = { onDecrement }
+                            disabled  = { decrementButtonIsDisabled }
                         >
                             -
                         </Button>
                     </InputGroupAddon>
                     <Input
-                        data-test="productAmount"
+                        data-test = "productAmount"
+                        name      = "amount"
+                        value     = { amount }
+                        style     = {{ textAlign: 'center' }}
                         readOnly
-                        name="amount"
-                        value={amount}
-                        style={{ textAlign: 'center' }}
                     />
                     <InputGroupAddon addonType="append">
                         <Button
-                            data-test="incrementProductAmount"
-                            onClick={onIncrement}
+                            data-test = "incrementProductAmount"
+                            onClick   = { onIncrement }
                         >+</Button>
                     </InputGroupAddon>
                 </InputGroup>
@@ -81,6 +80,15 @@ const AddToCardPresentational = ({
             { isLoading ? <LoadingButton /> : <NormalButton onClick={ onAddToCart } /> }
         </React.Fragment>
     )
+}
+
+AddToCardPresentational.propTypes = {
+    amount:      PropTypes.number.isRequired,
+    isLoading:   PropTypes.bool.isRequired,
+    onAddToCart: PropTypes.func.isRequired,
+    onDecrement: PropTypes.func.isRequired,
+    onIncrement: PropTypes.func.isRequired,
+    price:       PropTypes.number.isRequired,
 }
 
 export default AddToCardPresentational;

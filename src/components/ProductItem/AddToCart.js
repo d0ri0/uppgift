@@ -1,26 +1,35 @@
-import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
+import React, { Component }     from 'react';
+import PropTypes                from 'prop-types';
+import { productType }          from '../../types';
+import { connect }              from 'react-redux';
 import { addToCartAndLoadCart } from '../../actions/api';
-import { getCartTotalPrice } from '../../reducers';
+import { showModal }            from '../../actions/modal'
+import { getCartTotalPrice }    from '../../reducers';
 
-import { showModal } from '../../actions/modal'
 import AddToCartPresentational from './AddToCart/AddToCartPresentational';
 
 class AddToCart extends Component {
+
+    static propTypes = {
+        addToCartAndLoadCart: PropTypes.func.isRequired,
+        product:              productType.isRequired,
+        productsAddingToCart: PropTypes.array.isRequired,
+        showModal:            PropTypes.func.isRequired,
+        totalPrice:           PropTypes.number.isRequired,
+    };
+
     state = {
         amount: 1
     };
 
     increment = () => {
-        this.setState(state => ({
+        this.setState( state => ({
             amount: state.amount + 1
         }));
     };
 
     decrement = () => {
-        this.setState(state => ({
+        this.setState( state => ({
             amount: state.amount - 1
         }));
     };
@@ -33,11 +42,11 @@ class AddToCart extends Component {
         if( this.props.totalPrice <= maxTotalPrice ) {
             this.props.addToCartAndLoadCart({
                 product: this.props.product,
-                amount: this.state.amount
+                amount:  this.state.amount,
             });
         } else {
             this.props.showModal({
-                message: `Varukorgens värde överstiger ${maxTotalPrice}kr och du kan därför inte lägga till fler varor. Vänligen töm varukorgen och försök igen.`
+                message: `Varukorgens värde överstiger ${maxTotalPrice}kr och du kan därför inte lägga till fler varor. Vänligen töm varukorgen och försök igen.`,
             });
         }
 
@@ -49,12 +58,12 @@ class AddToCart extends Component {
 
         return (
             <AddToCartPresentational
-                price={this.props.product.Price}
-                amount={this.state.amount}
-                onIncrement={ this.increment }
-                onDecrement={ this.decrement }
-                isLoading={addToCardButtonIsLoading}
-                onAddToCart={this.addToCart}
+                price       = { this.props.product.Price }
+                amount      = { this.state.amount }
+                onIncrement = { this.increment }
+                onDecrement = { this.decrement }
+                isLoading   = { addToCardButtonIsLoading }
+                onAddToCart = { this.addToCart }
             />
         );
     }
@@ -63,7 +72,7 @@ class AddToCart extends Component {
 const mapStateToProps = state => ({
     cart:                   state.cart.data,
     totalPrice:             getCartTotalPrice( state ),
-    productsAddingToCart:   state.cart.productsAddingToCart
+    productsAddingToCart:   state.cart.productsAddingToCart,
 });
 
 export default connect(

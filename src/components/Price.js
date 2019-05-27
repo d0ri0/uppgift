@@ -1,5 +1,5 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+import React              from 'react'
+import PropTypes          from 'prop-types'
 import { currencyFormat } from '../misc/utils';
 
 
@@ -10,5 +10,9 @@ const Price = ({
         { currencyFormat( value ) }
     </React.Fragment>
 )
+
+Price.propTypes = {
+    value: PropTypes.number.isRequired,
+}
 
 export default Price

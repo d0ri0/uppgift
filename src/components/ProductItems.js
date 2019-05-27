@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes            from 'prop-types';
+import { connect }          from 'react-redux';
+
 import {
-    getProductsAndCart
+    getProductsAndCart,
 } from '../actions/api';
 
-import ProductGrid from './ProductGrid';
-import ProductItem from './ProductItem';
-
+import { ProductGrid, ProductItem } from './index';
 
 class ProductItems extends Component {
+
+    static propTypes = {
+        showAddToCart: PropTypes.bool.isRequired,
+    };
 
     componentDidMount() {
         this.props.getProductsAndCart();
@@ -20,25 +23,25 @@ class ProductItems extends Component {
 
         return (
             <ProductGrid>
-                {this.props.product.map(product => (
+                { this.props.product.map(product => (
                     <ProductItem
-                        key={product.Id}
-                        product={product}
-                        showAddToCart={props.showAddToCart}
+                        key           = { product.Id }
+                        product       = { product }
+                        showAddToCart = { props.showAddToCart }
                     />
-                ))}
+                )) }
             </ProductGrid>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    product:  state.product.data
+    product: state.product.data,
 });
 
 export default connect(
     mapStateToProps,
     {
-        getProductsAndCart
+        getProductsAndCart,
     }
 )(ProductItems);
