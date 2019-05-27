@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import ProductItems from '../components/ProductItems';
+import ProductGrid from '../components/ProductGrid';
+import ProductItem from '../components/ProductItem';
+
+
 import {
     getCart,
     clearCart,
@@ -12,7 +15,7 @@ import {
 
 import routes from '../misc/routes';
 
-import { getCartTotalPrice, getProductById } from '../reducers';
+import { getProductById } from '../reducers';
 
 import {
     Container,
@@ -57,26 +60,39 @@ class Page extends Component {
         }
 
         return (
-        <Container>
-            <Row>
-                <Col>
-                    <h1 className="display-3 text-center">Produkter i varukorgen</h1>
-                </Col>
-            </Row>
-            <Row className="mt-3">
-                <Col>
-                    {/* TODO: Alert type modal where the user can confirm deletion */}
-                    <Button onClick={this.props.clearCart}>Töm varukorg</Button>
-                </Col>
-            </Row>
-            <Row className="mt-3">
-                <Col>
-                    <ProductItems 
-                        showAddToCart={false}
-                    />
-                </Col>
-            </Row>
-        </Container>
+            <Container>
+                <Row>
+                    <Col>
+                        <h1 className="display-3 text-center">Produkter i varukorgen</h1>
+                    </Col>
+                </Row>
+                <Row className="mt-3">
+                    <Col>
+                        {/* TODO: Alert type modal where the user can confirm deletion */}
+                        <Button onClick={this.props.clearCart}>Töm varukorg</Button>
+                    </Col>
+                </Row>
+                <Row className="mt-3">
+                    <Col>
+                        <ProductGrid>
+                            {this.props.cart.data.Items.map(cartItem => {
+                                const product = this.props.getProductById(cartItem.Id);
+
+                                // Make sure that the product exists so we have its information
+                                return (
+                                    product && (
+                                        <ProductItem
+                                            key={product.Id}
+                                            product={product}
+                                            showAddToCart={false}
+                                        />
+                                    )
+                                );
+                            })}
+                        </ProductGrid>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
@@ -84,8 +100,7 @@ class Page extends Component {
 const mapStateToProps = state => ({
     cart:           state.cart,
     product:        state.product,
-    getProductById: id => getProductById( state, id ),
-    totalPrice:     getCartTotalPrice( state ),
+    getProductById: id => getProductById( state, id )
 });
 
 export default connect(

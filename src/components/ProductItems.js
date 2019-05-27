@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import {
     getProductsAndCart
 } from '../actions/api';
+
+import ProductGrid from './ProductGrid';
 import ProductItem from './ProductItem';
-import {
-  CardColumns
-} from 'reactstrap';
 
 
 class ProductItems extends Component {
@@ -20,15 +19,15 @@ class ProductItems extends Component {
         const { item, ...props } = this.props;
 
         return (
-            <CardColumns>
-                {this.props.product.map(item => (
+            <ProductGrid>
+                {this.props.product.map(product => (
                     <ProductItem
-                        key={item.Id}
-                        product={item}
+                        key={product.Id}
+                        product={product}
                         showAddToCart={props.showAddToCart}
                     />
                 ))}
-            </CardColumns>
+            </ProductGrid>
         );
     }
 }
