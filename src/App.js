@@ -14,10 +14,6 @@ import './App.css';
 
 class App extends Component {
 
-//   componentDidMount() {
-//       this.props.loadProducts();
-//   }
-
     render() {
         return (
             <Router>
@@ -36,12 +32,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-// export default connect(null, {
-//   // loadCartSummary,
-//   loadProducts,
-//   // getDummyPosts,
-//   // addToCart
-// })(App)

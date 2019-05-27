@@ -9,7 +9,7 @@ import {
   Spinner
 } from 'reactstrap';
 
-import { addToCart } from '../../actions/api';
+import { addToCartAndLoadCart } from '../../actions/api';
 import { getCartTotalPrice } from '../../reducers';
 
 import { showModal } from '../../actions/modal'
@@ -38,7 +38,7 @@ class AddToCart extends Component {
 
     // Check that we arent over the max price limit before adding to cart
     if( this.props.totalPrice <= maxTotalPrice ) {
-        this.props.addToCart({
+        this.props.addToCartAndLoadCart({
             product: this.props.product,
             amount: this.state.amount
         });
@@ -119,7 +119,7 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     {
-        addToCart,
+        addToCartAndLoadCart,
         // validateAndAddToCart,
         getCartTotalPrice,
         showModal

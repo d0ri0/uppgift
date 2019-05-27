@@ -1,4 +1,4 @@
-import * as types from '../actions/api'
+import * as types from '../actions/actionTypes'
 
 const initialState = {
     data: [],
@@ -6,7 +6,7 @@ const initialState = {
     loading: false
 }
 
-const ui = (state = initialState, action) => {
+export default (state = initialState, action) => {
     switch (action.type) {
         case types.GET_PRODUCTS_REQUEST:
             return {
@@ -30,4 +30,4 @@ const ui = (state = initialState, action) => {
     }
 }
 
-export default ui
+export const getProductById = ( state, productId ) => state.data.find( item => item.Id === productId );

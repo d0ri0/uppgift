@@ -12,7 +12,7 @@ import {
 
 import routes from '../misc/routes';
 
-import { getCartTotalPrice } from '../reducers';
+import { getCartTotalPrice, getProductById } from '../reducers';
 
 import {
     Container,
@@ -47,13 +47,9 @@ class Page extends Component {
         this.props.getProductsAndCart();
     }
 
-    getProductById = productId => {
-        return this.props.data.data.find(item => item.Id === productId);
-    };
-
     render() {
 
-        if( this.props.cart.loading || this.props.data.loading ){
+        if( this.props.cart.loading || this.props.product.loading ){
             return <PageLoader />;
         }
 
@@ -79,7 +75,7 @@ class Page extends Component {
                     <CardColumns>
                         {this.props.cart.data.Items.map(item => {
 
-                            const product = this.getProductById(item.Id);
+                            const product = this.props.getProductById(item.Id);
 
                             // Make sure that the product exists so we have its information
                             return (
@@ -102,9 +98,10 @@ class Page extends Component {
 }
 
 const mapStateToProps = state => ({
-    cart: state.cart,
-    data: state.api,
-    totalPrice : getCartTotalPrice( state )
+    cart:           state.cart,
+    product:        state.product,
+    getProductById: id => getProductById( state, id ),
+    totalPrice:     getCartTotalPrice( state ),
 });
 
 export default connect(

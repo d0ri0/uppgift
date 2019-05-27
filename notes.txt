@@ -4,17 +4,17 @@
 todo:
 - stäng mobil meny på sidbytning
 - filter visa endast produkter som går att köpa
-- skapa CRUD för src/actions/api.js - Cart
 - fetch api timeout: https://stackoverflow.com/questions/46946380/fetch-api-request-timeout
 - post cart 200OK, ska vara 201 created?
 - utils, noop
 
 
 ny todo:
-- base path http://apoteket-uppgift-fe.ginzburg.it/api/
+- skapa CRUD för src/actions/api.js - Cart
 - sätta proptypes
-- använd transform i middleware för cart [] & ta bort tomma items
-- request headers
+- använd transform i middleware för cart []
+- .scss imports
+- itemsInChange
 
 - footer(component) -> filterlink(container component = logik + getFromStore  + dispatch) -> link(presentation component, (dum komponent))
 - https://egghead.io/lessons/react-redux-extracting-container-components-filterlink

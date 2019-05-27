@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProductItem from '../components/ProductItem';
 import {
-    loadProducts,
-    addToCart,
+    getProducts,
+    addToCartAndLoadCart,
     getProductsAndCart
 } from '../actions/api';
 import {
@@ -34,20 +34,20 @@ class Page extends Component {
         return (
             <Container>
                 <Row>
-                <Col>
-                    <h1 className="display-3 text-center">Alla våra produkter</h1>
-                </Col>
+                    <Col>
+                        <h1 className="display-3 text-center">Alla våra produkter</h1>
+                    </Col>
                 </Row>
 
                 <CardColumns>
-                {this.props.data.map(item => (
-                    <ProductItem
-                    key={item.Id}
-                    item={item}
-                    itemsInChange={this.props.itemsInChange}
-                    canAddToCart={true}
-                    />
-                ))}
+                    {this.props.product.map(item => (
+                        <ProductItem
+                        key={item.Id}
+                        item={item}
+                        itemsInChange={this.props.itemsInChange}
+                        canAddToCart={true}
+                        />
+                    ))}
                 </CardColumns>
             </Container>
         );
@@ -55,16 +55,16 @@ class Page extends Component {
 }
 
 const mapStateToProps = state => ({
-    data: state.api.data,
-    isLoading: state.api.loading,
+    product: state.product.data,
+    isLoading: state.product.loading,
     itemsInChange: state.cart.itemsInChange
 });
 
 export default connect(
     mapStateToProps,
     {
-        loadProducts,
-        addToCart,
+        getProducts,
+        addToCartAndLoadCart,
         getProductsAndCart
     }
 )(Page);
